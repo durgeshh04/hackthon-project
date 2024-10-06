@@ -1,15 +1,53 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEdit,
+  faTrash,
+  faUser,
+  faSort,
+  faUsersCog
+} from "@fortawesome/free-solid-svg-icons";
+import { FaSearch} from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsersCog } from '@fortawesome/free-solid-svg-icons';
-import { FaSearch, FaSort, FaEdit, FaTrash } from "react-icons/fa";
+
+const rolesData = [
+  {
+    id: 123,
+    role: "Admin",
+    status: "Active",
+  },
+  {
+    id: 124,
+    role: "Super Admin",
+    status: "Inactive",
+  },
+  {
+    id: 125,
+    role: "Caller",
+    status: "Inactive",
+  },
+  {
+    id: 126,
+    role: "Account",
+    status: "Active",
+  },
+];
 
 const ViewRoles = () => {
+  const handleDelete = (id) => {
+    console.log("Deleted user with id:", id);
+  };
+
+  const handleEdit = (id) => {
+    console.log("Edit user with id:", id);
+  };
+
   return (
-    <div className="p-4 h-full border rounded-lg shadow-2xl">
-      <div className="flex items-center justify-between mb-4">
+    <div className="h-full p-6 border rounded-2xl shadow-2xl">
+      {/* Header with user icon, search bar, and Add New button */}
+      <div className="flex justify-between items-center mb-4">
         <div className="flex items-center">
-          <FontAwesomeIcon icon={faUsersCog} className="text-2xl mr-2" />
-          <h2 className="text-xl font-bold">Roles</h2>
+          <FontAwesomeIcon icon={faUsersCog} className="text-3xl mr-4" />
+          <h2 className="text-2xl font-bold">Roles</h2>
           <div className="relative ml-4">
             <input
               type="text"
@@ -18,50 +56,63 @@ const ViewRoles = () => {
             <FaSearch className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center space-x-4">
+        
           <Link
             to="/roles/add"
-            className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
+            className="bg-purple-600 text-white px-4 py-2 rounded-md"
           >
             Add New
           </Link>
         </div>
       </div>
-      <div className="overflow-x-auto">
-  <div className="min-w-full border flex flex-col gap-2 border-gray-300 bg-white">
-    {/* Header */}
-    <div className="grid grid-cols-4 gap-x-40 font-bold bg-yellow-200 px-4 py-2">
-      <div className="flex items-center">
-        <span className="mr-1">ID</span>
-        <FaSort className="cursor-pointer" />
-      </div>
-      <div className="flex items-center">
-        <span className="mr-1">Role Name</span>
-        <FaSort className="cursor-pointer" />
-      </div>
-      <div className="flex items-center">
-        <span className="mr-1">Status</span>
-        <FaSort className="cursor-pointer" />
-      </div>
-      <div className="flex items-center">
-        <span>Action</span>
-      </div>
-    </div>
 
-    {/* Body */}
-    
-    <div className="grid grid-cols-4 gap-x-40 px-4 py-2 bg-gray-200">
-      <div>1</div>
-      <div className="overflow-hidden">Superadmin</div>
-      <div className="text-red-500">active</div>
-      <div className="flex">
-        <FaEdit className="mr-2 cursor-pointer text-blue-500 hover:text-blue-700" />
-        <FaTrash className="cursor-pointer text-red-500 hover:text-red-700" />
-      </div>
-    </div>
-  </div>
-</div>
-
+      {/* User table */}
+      <table className="w-full text-left border-separate border-spacing-y-2">
+        <thead className="bg-yellow-200">
+          <tr>
+            <th className="px-4 py-2">
+              Id <FontAwesomeIcon icon={faSort} />
+            </th>
+            <th className="px-4 py-2">
+              Role <FontAwesomeIcon icon={faUser} className="mr-2 text-lg" />
+            </th>
+            <th className="px-4 py-2">
+              Status <FontAwesomeIcon icon={faSort} />
+            </th>
+            <th className="px-4 py-2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rolesData.map((role) => (
+            <tr key={role.id} className="bg-gray-200">
+              <td className="px-4 py-2">{role.id}</td>
+              <td className="px-4 py-2 flex items-center">{role.role}</td>
+              <td
+                className={`px-4 py-2 ${
+                  role.status === "Active" ? "text-green-600" : "text-red-500"
+                }`}
+              >
+                {role.status}
+              </td>
+              <td className="px-4 py-2">
+                <button
+                  onClick={() => handleEdit(role.id)}
+                  className="text-blue-500 hover:text-blue-700 mr-4"
+                >
+                  <FontAwesomeIcon icon={faEdit} />
+                </button>
+                <button
+                  onClick={() => handleDelete(role.id)}
+                  className="text-red-500 hover:text-red-700"
+                >
+                  <FontAwesomeIcon icon={faTrash} />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

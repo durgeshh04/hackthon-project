@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,7 +15,7 @@ const AddRole = () => {
   };
 
   return (
-    <div className="p-8 bg-white rounded-lg shadow-2xl h-full flex flex-col">
+    <div className="p-8 bg-white border rounded-2xl shadow-2xl h-full flex flex-col">
       {/* Heading with Back Icon */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center">
