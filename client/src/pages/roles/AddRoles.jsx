@@ -35,7 +35,7 @@ const AddRole = () => {
           <input
             {...register('roleName', { required: true })}
             placeholder="Enter Role Name"
-            className="w-96 p-3 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-96 p-3 border border-gray-500 rounded-md focus:outline-none"
           />
         </div>
 

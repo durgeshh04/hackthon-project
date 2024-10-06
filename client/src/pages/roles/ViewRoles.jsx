@@ -4,9 +4,9 @@ import {
   faTrash,
   faUser,
   faSort,
-  faUsersCog
+  faUsersCog,
 } from "@fortawesome/free-solid-svg-icons";
-import { FaSearch} from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const rolesData = [
@@ -57,7 +57,6 @@ const ViewRoles = () => {
           </div>
         </div>
         <div className="flex items-center space-x-4">
-        
           <Link
             to="/roles/add"
             className="bg-purple-600 text-white px-4 py-2 rounded-md"
@@ -96,12 +95,15 @@ const ViewRoles = () => {
                 {role.status}
               </td>
               <td className="px-4 py-2">
-                <button
-                  onClick={() => handleEdit(role.id)}
-                  className="text-blue-500 hover:text-blue-700 mr-4"
-                >
-                  <FontAwesomeIcon icon={faEdit} />
-                </button>
+                <Link to={`/roles/edit/`}>
+                  <button
+                    onClick={() => handleEdit(role.id)}
+                    className="text-blue-500 hover:text-blue-700 mr-4"
+                  >
+                    <FontAwesomeIcon icon={faEdit} />
+                  </button>
+                </Link>
+
                 <button
                   onClick={() => handleDelete(role.id)}
                   className="text-red-500 hover:text-red-700"

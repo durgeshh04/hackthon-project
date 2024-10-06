@@ -126,12 +126,12 @@ const ViewUsers = () => {
                 {user.status}
               </td>
               <td className="px-4 py-2">
-                <button
+                <Link to={`/users/edit/`}><button
                   onClick={() => handleEdit(user.id)}
                   className="text-blue-500 hover:text-blue-700 mr-4"
                 >
                   <FontAwesomeIcon icon={faEdit} />
-                </button>
+                </button></Link>
                 <button
                   onClick={() => handleDelete(user.id)}
                   className="text-red-500 hover:text-red-700"
